@@ -7,12 +7,12 @@
 **Red Ninja**, aşağıdaki temel mekaniklere dayanır:  
 
 ### Temel Mekanikler:  
-- **Hareket:** Oyuncu, yön tuşları veya `W`, `A`, `S`, `D` tuşları ile sağa, sola, yukarı ve aşağı hareket edebilir.
-- **Shift ile Hızlı Koşma:** Oyuncu, `Shift` tuşuna basılı tutarak daha hızlı hareket edebilir. Bu mekanik düşmanlardan kaçarken ve uzun mesafeli atlama menzilinde atlarken önemlidir.  
-- **Shuriken Fırlatma:** Oyuncu, düşmanlara zarar vermek için shuriken fırlatır. Shurikenler sınırlı olabilir ve platform boyunca yerleştirilmiş sandıklardan yenileri bulunabilir.  
-- **Zıplama:** Platformlar arasında ilerlemek ve engelleri aşmak için oyuncu zıplama yeteneğini kullanır.  
+- **Hareket:** Oyuncu, yön tuşları veya `W`, `A`, `S`, `D` tuşları ile sağa, sola, yukarı ve aşağı hareket edebilir.  
+- **Shift ile Hızlı Koşma:** Oyuncu, `Shift` tuşuna basılı tutarak daha hızlı hareket edebilir. Bu mekanik, özellikle zamanla yarışılan bölümlerde veya düşmanlardan kaçarken önemlidir.  
+- **Zıplama:** Oyuncu, `Space` tuşuna basarak zıplayabilir. Platformlar arasında ilerlemek ve engelleri aşmak için kullanılır.  
+- **Shuriken Fırlatma:** Oyuncu, sol tıklama (`Left Click`) ile shuriken fırlatabilir. Shurikenler düşmanlara zarar vermek için kullanılır ve sınırlı sayıda olabilir.  
 - **Checkpointler:** Checkpoint noktaları, oyuncunun ilerlemesini kaydeder. Eğer oyuncu ölürse, en son checkpoint'ten devam eder.  
-
+ 
 ### Platform ve Çevre:  
 - **Düşmanlar:** Oyuncunun ilerlemesine engel olmak için hareket eden veya sabit düşmanlar bulunur. Düşmanlar belirli bir hareket modeliyle davranır ve oyuncuyla temas ettiğinde hasar verir.  
 - **Sandıklar:** Platform boyunca yerleştirilmiş olan sandıklar, oyuncuya ekstra shuriken, sağlık puanı veya geçici güçlendirmeler sağlar.  
@@ -48,9 +48,6 @@
   - **Aksiyom2:**
   - **Aksiyom3:** 
   - **Aksiyom4:** 
-
-## Katkıda Bulunma  
-Projemize katkıda bulunmak isterseniz, lütfen bir **Pull Request** gönderin veya [grup lideri](mailto:example@example.com) ile iletişime geçin.  
 
 ## Lisans  
 Bu proje, MIT Lisansı ile lisanslanmıştır. Daha fazla bilgi için `LICENSE` dosyasını inceleyebilirsiniz.
