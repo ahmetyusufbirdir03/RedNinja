@@ -7,7 +7,8 @@
 **Red Ninja**, aşağıdaki temel mekaniklere dayanır:  
 
 ### Temel Mekanikler:  
-- **Hareket:** Oyuncu, yön tuşları veya `W`, `A`, `S`, `D` tuşları ile sağa, sola, yukarı ve aşağı hareket edebilir.  
+- **Hareket:** Oyuncu, yön tuşları veya `W`, `A`, `S`, `D` tuşları ile sağa, sola, yukarı ve aşağı hareket edebilir.
+- **Shift ile Hızlı Koşma:** Oyuncu, `Shift` tuşuna basılı tutarak daha hızlı hareket edebilir. Bu mekanik düşmanlardan kaçarken ve uzun mesafeli atlama menzilinde atlarken önemlidir.  
 - **Shuriken Fırlatma:** Oyuncu, düşmanlara zarar vermek için shuriken fırlatır. Shurikenler sınırlı olabilir ve platform boyunca yerleştirilmiş sandıklardan yenileri bulunabilir.  
 - **Zıplama:** Platformlar arasında ilerlemek ve engelleri aşmak için oyuncu zıplama yeteneğini kullanır.  
 - **Checkpointler:** Checkpoint noktaları, oyuncunun ilerlemesini kaydeder. Eğer oyuncu ölürse, en son checkpoint'ten devam eder.  
