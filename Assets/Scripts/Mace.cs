@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Mace : MonoBehaviour
 {
-    public float rotationSpeed = 50f;
-    public float maxRotationAngle = 45f;
+    public float rotationSpeed = 3;
+    public float maxRotationAngle = 90f;
     public float knockbackForce = 10f;
     private float timeCounter = 0f;
 

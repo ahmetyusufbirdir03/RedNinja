@@ -183,8 +183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734676806bde6c243a9e9c976f71100c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 5
-  maxRotationAngle: 45
+  rotationSpeed: 3
+  maxRotationAngle: 90
   knockbackForce: 10
 --- !u!58 &1207662536954890192
 CircleCollider2D:
