@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "VizeProjesi.sln"
+    "dotnet.defaultSolution": "RedNinja.sln"
 }
