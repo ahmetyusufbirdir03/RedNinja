@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Slime
+  - Shark
+  - Trap
+  - Coin
+  - ChestBlue
+  - ChestBrown
   layers:
   - Default
   - TransparentFX
