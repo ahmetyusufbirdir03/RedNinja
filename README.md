@@ -10,7 +10,7 @@
 - **Hareket:** Oyuncu, yön tuşları veya `W`, `A`, `S`, `D` tuşları ile sağa, sola, yukarı ve aşağı hareket edebilir.  
 - **Shift ile Hızlı Koşma:** Oyuncu, `Shift` tuşuna basılı tutarak daha hızlı hareket edebilir. Bu mekanik, özellikle zamanla yarışılan bölümlerde veya düşmanlardan kaçarken önemlidir.  
 - **Zıplama:** Oyuncu, `Space` tuşuna basarak zıplayabilir. Platformlar arasında ilerlemek ve engelleri aşmak için kullanılır.  
-- **Shuriken Fırlatma:** Oyuncu, sol tıklama (`Left Click`) ile shuriken fırlatabilir. Shurikenler düşmanlara zarar vermek için kullanılır ve sınırlı sayıda olabilir.  
+- **Shuriken Fırlatma:** Oyuncu, sol tıklama (`Left Click`) ile shuriken fırlatabilir. Shurikenler düşmanlara zarar vermek için kullanılır ve menzili yok platformun dışına kadar çıkabilir.
 - **Checkpointler:** Checkpoint noktaları, oyuncunun ilerlemesini kaydeder. Eğer oyuncu ölürse, en son checkpoint'ten devam eder.  
  
 ### Platform ve Çevre:  
