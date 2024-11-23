@@ -1,0 +1,48 @@
+# Red Ninja
+
+## Oyun Hakkında  
+**Red Ninja**, Mario tarzı 2D platform öğeleri içeren bir aksiyon-macera oyunudur. Oyuncunun amacı, düşmanları alt ederek ve engelleri aşarak platformda ilerlemektir. Eğlenceli ve hızlı tempolu oynanışıyla reflekslerinizi ve strateji yeteneklerinizi test etmeyi hedefler.  
+
+## Oynanış  
+**Red Ninja**, aşağıdaki temel mekaniklere dayanır:  
+
+### Temel Mekanikler:  
+- **Hareket:** Oyuncu, yön tuşları veya `W`, `A`, `S`, `D` tuşları ile sağa, sola, yukarı ve aşağı hareket edebilir.  
+- **Shuriken Fırlatma:** Oyuncu, düşmanlara zarar vermek için shuriken fırlatır. Shurikenler sınırlı olabilir ve platform boyunca yerleştirilmiş sandıklardan yenileri bulunabilir.  
+- **Zıplama:** Platformlar arasında ilerlemek ve engelleri aşmak için oyuncu zıplama yeteneğini kullanır.  
+- **Checkpointler:** Checkpoint noktaları, oyuncunun ilerlemesini kaydeder. Eğer oyuncu ölürse, en son checkpoint'ten devam eder.  
+
+### Platform ve Çevre:  
+- **Düşmanlar:** Oyuncunun ilerlemesine engel olmak için hareket eden veya sabit düşmanlar bulunur. Düşmanlar belirli bir hareket modeliyle davranır ve oyuncuyla temas ettiğinde hasar verir.  
+- **Sandıklar:** Platform boyunca yerleştirilmiş olan sandıklar, oyuncuya ekstra shuriken, sağlık puanı veya geçici güçlendirmeler sağlar.  
+- **Engeller:** Oyuncunun dikkatlice geçmesi gereken çukurlar, hareketli platformlar ve tuzaklar bulunur.  
+
+### Kazanma ve Kaybetme:  
+- Oyuncunun hedefi, platformun sonuna ulaşarak tüm düşmanları etkisiz hale getirmek ve bölümü tamamlamaktır.  
+- Eğer oyuncu düşmanlar tarafından tüm sağlık puanını kaybeder veya engellerden birine düşerse, oyun en son checkpoint'ten tekrar başlar.  
+
+## Oyuna Erişim  
+[Oyun Bağlantısı](#)  
+
+## Grup Üyeleri ve Katkıları  
+
+### 1. **Lütfü Bedel**  
+- Aksiyonlar:  
+  - **Player Movement:** `PlayerMovement.cs:45`  
+  - **Checkpoint Aktivasyonu:** `Checkpoint.cs:32`  
+
+### 2. **Ahmet Yusuf Birdir**  
+- Aksiyonlar:  
+  - **Shuriken Fırlatma Mekaniği:** `Shuriken.cs:18`  
+  - **Düşman Çarpışması:** `EnemyCollision.cs:78`  
+
+### 3. **Yusuf Güney**  
+- Aksiyonlar:  
+  - **Sandık Açma Mekaniği:** `Chest.cs:22`  
+  - **Düşman Yapay Zekası:** `EnemyAI.cs:50`  
+
+## Katkıda Bulunma  
+Projemize katkıda bulunmak isterseniz, lütfen bir **Pull Request** gönderin veya [grup lideri](mailto:example@example.com) ile iletişime geçin.  
+
+## Lisans  
+Bu proje, MIT Lisansı ile lisanslanmıştır. Daha fazla bilgi için `LICENSE` dosyasını inceleyebilirsiniz.
