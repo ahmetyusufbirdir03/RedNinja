@@ -1,6 +1,6 @@
 # Red Ninja
 
-## Oyun Hakkında  
+## Oynanış Bilgileri 
 **Red Ninja**, Mario tarzı 2D platform öğeleri içeren bir aksiyon-macera oyunudur. Oyuncunun amacı, düşmanları alt ederek ve engelleri aşarak platformda ilerlemektir. Eğlenceli ve hızlı tempolu oynanışıyla reflekslerinizi ve strateji yeteneklerinizi test etmeyi hedefler.  
 
 ## Oynanış  
@@ -28,18 +28,25 @@
 
 ### 1. **Lütfü Bedel**  
 - Aksiyonlar:  
-  - **Player Movement:** `PlayerMovement.cs:45`  
-  - **Checkpoint Aktivasyonu:** `Checkpoint.cs:32`  
+  - **Aksiyom1:** 
+  - **Aksiyom2:**
+  - **Aksiyom3:** 
+  - **Aksiyom4:** 
 
 ### 2. **Ahmet Yusuf Birdir**  
 - Aksiyonlar:  
-  - **Shuriken Fırlatma Mekaniği:** `Shuriken.cs:18`  
-  - **Düşman Çarpışması:** `EnemyCollision.cs:78`  
+  - **Aksiyom1:** 
+  - **Aksiyom2:**
+  - **Aksiyom3:** 
+  - **Aksiyom4:** 
+
 
 ### 3. **Yusuf Güney**  
 - Aksiyonlar:  
-  - **Sandık Açma Mekaniği:** `Chest.cs:22`  
-  - **Düşman Yapay Zekası:** `EnemyAI.cs:50`  
+  - **Aksiyom1:** 
+  - **Aksiyom2:**
+  - **Aksiyom3:** 
+  - **Aksiyom4:** 
 
 ## Katkıda Bulunma  
 Projemize katkıda bulunmak isterseniz, lütfen bir **Pull Request** gönderin veya [grup lideri](mailto:example@example.com) ile iletişime geçin.  
