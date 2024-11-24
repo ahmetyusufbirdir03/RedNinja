@@ -23,7 +23,7 @@
 - Eğer oyuncu düşmanlar tarafından tüm sağlık puanını kaybeder veya engellerden birine düşerse, oyun en son checkpoint'ten tekrar başlar.  
 
 ## Oyuna Erişim  
-[Oyun Bağlantısı](#)  
+[[Oyun Bağlantısı](https://lutfubedel.itch.io/red-ninja)](#)  
 
 ## Grup Üyeleri ve Katkıları  
 
