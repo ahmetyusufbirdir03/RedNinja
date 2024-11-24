@@ -7,6 +7,7 @@ public class Shark : MonoBehaviour
     [Header("Speeds")]
     [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float followSpeed = 4f;
+    [SerializeField] private float jumpForce = 5f;
 
     [Header("Health")]
     [SerializeField] private float maxHealth = 100f;
@@ -17,8 +18,8 @@ public class Shark : MonoBehaviour
     private GameObject player;
     private Vector3 originalPosition;
     private Vector3 targetPosition;
-    private Vector3 lastPosition;
     private Animator anim;
+    private Rigidbody2D rb;
 
     private bool movingToTarget = true;
     private bool isDead = false;
@@ -28,11 +29,11 @@ public class Shark : MonoBehaviour
         // Referanslarý al
         player = GameObject.FindWithTag("Player");
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
 
         // Pozisyonlarý ve saðlýk deðerlerini baþlat
         originalPosition = transform.position;
-        targetPosition = new Vector3(originalPosition.x + 5, originalPosition.y, originalPosition.z);
-        lastPosition = transform.position;
+        targetPosition = new Vector3(originalPosition.x + 3, originalPosition.y, originalPosition.z);
 
         health = maxHealth;
     }
@@ -52,12 +53,14 @@ public class Shark : MonoBehaviour
         {
             // Oyuncuyu takip et
             FollowPlayer();
+            CheckForObstacle(); // Engel kontrolü yap
             anim.SetBool("Attack", false);
         }
         else
         {
             // Hedefler arasýnda hareket et
             MoveBetweenPositions();
+            CheckForObstacle(); // Engel kontrolü yap
             anim.SetBool("Attack", false);
         }
 
@@ -88,20 +91,35 @@ public class Shark : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, followSpeed * Time.deltaTime);
     }
 
+    private void CheckForObstacle()
+    {
+        // Engel kontrolü için bir ýþýn kullan
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * (movingToTarget ? 1 : -1), 0.5f);
+
+        if (hit.collider != null && !hit.collider.CompareTag("Player"))
+        {
+            if (Mathf.Abs(rb.velocity.y) < 0.1f) // Zaten havadaysa zýplama
+            {
+                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
+        }
+    }
+
     private void UpdateRotation()
     {
-        Vector3 direction = transform.position - lastPosition;
-
-        if (direction.x > 0)
+        if (player != null)
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-        else if (direction.x < 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
+            Vector3 directionToPlayer = player.transform.position - transform.position;
 
-        lastPosition = transform.position;
+            if (directionToPlayer.x > 0)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if (directionToPlayer.x < 0)
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+        }
     }
 
     private void UpdateHealthBar()

@@ -149,7 +149,7 @@ SpriteRenderer:
   m_Size: {x: 1.44, y: 1.46}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &8256076860683467154
@@ -268,10 +268,11 @@ MonoBehaviour:
   isGrounded: 0
   isAboutToLand: 0
   canFire: 0
-  shuriken: {fileID: 8691819582742822463, guid: 52f659c903d27644aafac2c693a33dca, type: 3}
+  shuriken: {fileID: 8691819582742822463, guid: 0023c2dd4d05ebd4ba6a1c316fed7845, type: 3}
   firePoint: {fileID: 2003121272389055217}
   fireCooldown: 1
   life: 3
   healthParent: {fileID: 0}
   coinCount: 0
   coinText: {fileID: 0}
+  coinIncreaseSpeed: 0.1

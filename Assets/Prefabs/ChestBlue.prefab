@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2411102729422110547}
   m_Layer: 0
   m_Name: ChestBlue
-  m_TagString: Untagged
+  m_TagString: ChestBlue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

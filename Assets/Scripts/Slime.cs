@@ -8,7 +8,7 @@ public class Slime : MonoBehaviour
     [Header("Objects")]
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject slimeBomb;
-    [SerializeField] private Transform spawnPoint; 
+    [SerializeField] private Transform spawnPoint;
 
     [Header("Booleans")]
     [SerializeField] private bool isAttacking = false;
@@ -39,7 +39,7 @@ public class Slime : MonoBehaviour
             }
         }
 
-        if (health <=0)
+        if (health <= 0)
         {
             anim.SetTrigger("Dead");
             Destroy(this.gameObject, 1.5f);
@@ -55,8 +55,8 @@ public class Slime : MonoBehaviour
         while (Vector3.Distance(transform.position, player.transform.position) < 8f)
         {
             anim.SetTrigger("Attack");
-            GameObject slimeObj = Instantiate(slimeBomb, spawnPoint.position, Quaternion.Euler(0,180,0));
-            slimeObj.GetComponent<SlimeBomb>().moveInput = transform.eulerAngles.y == 180 ? -1 : 1;
+            GameObject slimeObj = Instantiate(slimeBomb, spawnPoint.position, Quaternion.Euler(0, 180, 0));
+            slimeObj.GetComponent<SlimeBall>().moveInput = transform.eulerAngles.y == 180 ? -1 : 1;
             yield return new WaitForSeconds(1f);
         }
 

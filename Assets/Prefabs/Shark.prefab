@@ -210,7 +210,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.64, y: -3.849, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7493874433473006304}
@@ -471,6 +471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   followSpeed: 4
+  jumpForce: 5
   maxHealth: 100
   healthBar: {fileID: 681396986408540721}
   health: 100

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class PlayerController : MonoBehaviour
     [Header("Coin")]
     [SerializeField] public int coinCount;
     [SerializeField] public TMP_Text coinText;
-
+    [SerializeField] private float coinIncreaseSpeed = 0.1f;
 
 
     Rigidbody2D rb;
@@ -57,7 +58,7 @@ public class PlayerController : MonoBehaviour
         AdjustRotationToSlope();
 
         coinText.text = coinCount.ToString("00");
-        
+
     }
 
     private void Move()
@@ -81,7 +82,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
         anim.SetBool("Move", isMoving);
 
-        if(isMoving)
+        if (isMoving)
         {
             anim.speed = Input.GetKey(KeyCode.LeftShift) ? 1.5f : 1f;
         }
@@ -109,7 +110,7 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
-            if(slopeAngle == 0)
+            if (slopeAngle == 0)
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             else
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce * 1.2f);
@@ -150,6 +151,10 @@ public class PlayerController : MonoBehaviour
             healthIcons[i].gameObject.SetActive(i < life);
         }
 
+        if (life <= 0)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
 
@@ -162,6 +167,15 @@ public class PlayerController : MonoBehaviour
             coinCount++;
             Destroy(collision.gameObject);
         }
+
+        if (collision.gameObject.CompareTag("ChestBlue"))
+        {
+            Animator chestAnim = collision.gameObject.GetComponent<Animator>();
+            chestAnim.SetTrigger("Open");
+
+            StartCoroutine(IncrementCoins(20));
+            collision.GetComponent<BoxCollider2D>().enabled = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -169,7 +183,8 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Trap"))
         {
             life -= 1;
-            StartCoroutine(MoveBackSmoothly());        }
+            StartCoroutine(MoveBackSmoothly());
+        }
     }
 
     private IEnumerator MoveBackSmoothly()
@@ -181,7 +196,7 @@ public class PlayerController : MonoBehaviour
         while (elapsedTime < backSpeed)
         {
             float newX = Mathf.Lerp(startX, targetX, elapsedTime / backSpeed);
-            rb.MovePosition(new Vector2(newX, transform.position.y)); 
+            rb.MovePosition(new Vector2(newX, transform.position.y));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -198,12 +213,12 @@ public class PlayerController : MonoBehaviour
         {
             Vector2 groundNormal = hit.normal;
             float slopeAngle = Vector2.SignedAngle(Vector2.up, groundNormal);
-            
-            if (rb.velocity.x > 0) 
+
+            if (rb.velocity.x > 0)
             {
                 transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y, slopeAngle);
             }
-            else if (rb.velocity.x < 0) 
+            else if (rb.velocity.x < 0)
             {
                 transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y, -slopeAngle);
             }
@@ -211,5 +226,15 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private IEnumerator IncrementCoins(int amount)
+    {
+        int coinsAdded = 0;
+        while (coinsAdded < amount)
+        {
+            coinCount++;
+            coinsAdded++;
+            yield return new WaitForSeconds(coinIncreaseSpeed);
+        }
+    }
 
 }
