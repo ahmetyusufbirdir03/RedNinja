@@ -51,16 +51,14 @@ public class Shark : MonoBehaviour
         }
         else if (distanceToPlayer < 5f)
         {
-            // Oyuncuyu takip et
             FollowPlayer();
-            CheckForObstacle(); // Engel kontrolu yap
+            CheckForObstacle();
             anim.SetBool("Attack", false);
         }
         else
         {
-            // Hedefler arasinda hareket et
             MoveBetweenPositions();
-            CheckForObstacle(); // Engel kontrolu yap
+            CheckForObstacle();
             anim.SetBool("Attack", false);
         }
 
@@ -93,12 +91,11 @@ public class Shark : MonoBehaviour
 
     private void CheckForObstacle()
     {
-        // Engel kontrol� i�in bir ���n kullan
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * (movingToTarget ? 1 : -1), 0.5f);
 
         if (hit.collider != null && !hit.collider.CompareTag("Player"))
         {
-            if (Mathf.Abs(rb.velocity.y) < 0.1f) // Zaten havadaysa z�plama
+            if (Mathf.Abs(rb.velocity.y) < 0.1f)
             {
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             }
@@ -130,22 +127,10 @@ public class Shark : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
-        StartCoroutine(FlashEffect());
-
         if (health <= 0 && !isDead)
         {
             Die();
         }
-    }
-
-    private IEnumerator FlashEffect()
-    {
-        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
-        Color originalColor = renderer.color;
-
-        renderer.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        renderer.color = originalColor;
     }
 
     private void Die()
@@ -164,9 +149,6 @@ public class Shark : MonoBehaviour
 
     public void HitPlayer()
     {
-        if (player.TryGetComponent(out PlayerController playerController))
-        {
-            playerController.life -= 1;
-        }
+        player.GetComponent<PlayerController>().life -=1;
     }
 }

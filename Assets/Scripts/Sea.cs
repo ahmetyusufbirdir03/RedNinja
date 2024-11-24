@@ -6,17 +6,7 @@ using UnityEngine;
 public class Sea : MonoBehaviour
 {   
     [SerializeField] public int water_id = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void OnTriggerEnter2D(Collider2D other){
         PlayerController player = other.GetComponent<PlayerController>();

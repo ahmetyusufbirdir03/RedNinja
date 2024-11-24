@@ -10,6 +10,8 @@ TagManager:
   - Coin
   - ChestBlue
   - ChestBrown
+  - HealthPot
+  - End
   layers:
   - Default
   - TransparentFX

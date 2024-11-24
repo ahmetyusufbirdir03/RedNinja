@@ -36,10 +36,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public TMP_Text coinText;
     [SerializeField] private float coinIncreaseSpeed = 0.1f;
 
-    [SerializeField] private bool canDoubleJump = false; // Çift zıplama kullanılabilir mi?
-    [SerializeField] public bool isJumpBonusActive = false; // Bonus aktif mi?
-
-
+    [Header("Bonus")]
+    [SerializeField] private bool canDoubleJump = false; 
+    [SerializeField] public bool isJumpBonusActive = false;
 
     Rigidbody2D rb;
     Animator anim;
@@ -95,48 +94,48 @@ public class PlayerController : MonoBehaviour
 
     private void PerformJump(float slopeAngle)
     {
-    if (slopeAngle == 0)
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-    else
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce * 1.2f);
+        if (slopeAngle == 0)
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        else
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce * 1.2f);
 
-    anim.SetBool("JumpUp", true);
-    anim.SetBool("JumpDown", false);
+        anim.SetBool("JumpUp", true);
+        anim.SetBool("JumpDown", false);
     }
 
 
     private void Jump()
     {
-    isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-    isAboutToLand = !isGrounded && rb.velocity.y < 0 && Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckRadius * 5f, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        isAboutToLand = !isGrounded && rb.velocity.y < 0 && Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckRadius * 5f, groundLayer);
 
-    anim.SetBool("JumpUp", !isGrounded && rb.velocity.y > 0);
-    anim.SetBool("JumpDown", isAboutToLand);
+        anim.SetBool("JumpUp", !isGrounded && rb.velocity.y > 0);
+        anim.SetBool("JumpDown", isAboutToLand);
 
-    Vector2 rayDirection = Vector2.down + (Vector2.right * rb.velocity.x * 0.1f);
-    float rayDistance = groundCheckRadius * 5f;
+        Vector2 rayDirection = Vector2.down + (Vector2.right * rb.velocity.x * 0.1f);
+        float rayDistance = groundCheckRadius * 5f;
 
-    RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, rayDirection, rayDistance, groundLayer);
-    float slopeAngle = Vector2.Angle(Vector2.up, hit.normal); // Zemin eğimi
+        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, rayDirection, rayDistance, groundLayer);
+        float slopeAngle = Vector2.Angle(Vector2.up, hit.normal); 
 
-    if (isGrounded)
-    {
-        anim.SetBool("JumpDown", false);
-        canDoubleJump = true; // Yere inince çift zıplama sıfırlanır
-    }
-
-    if (Input.GetButtonDown("Jump"))
-    {
-        if (isGrounded) // İlk zıplama
+        if (isGrounded)
         {
-            PerformJump(slopeAngle);
+            anim.SetBool("JumpDown", false);
+            canDoubleJump = true; 
         }
-        else if (isJumpBonusActive && canDoubleJump) // Çift zıplama
+
+        if (Input.GetButtonDown("Jump"))
         {
-            PerformJump(0); // Eğimi dikkate almadan çift zıplama yapılır
-            canDoubleJump = false; // Çift zıplama hakkını tüket
+            if (isGrounded) 
+            {
+                PerformJump(slopeAngle);
+            }
+            else if (isJumpBonusActive && canDoubleJump) 
+            {
+                PerformJump(0); 
+                canDoubleJump = false; 
+            }
         }
-    }
     }
 
 
@@ -195,6 +194,26 @@ public class PlayerController : MonoBehaviour
 
             StartCoroutine(IncrementCoins(20));
             collision.GetComponent<BoxCollider2D>().enabled = false;
+        }
+
+        if (collision.gameObject.CompareTag("ChestBrown"))
+        {
+            Animator chestAnim = collision.gameObject.GetComponent<Animator>();
+            chestAnim.SetTrigger("Open");
+
+            ActivateJumpBonus();
+            collision.GetComponent<BoxCollider2D>().enabled = false;
+        }
+
+        if (collision.gameObject.CompareTag("HealthPot"))
+        {
+            if (life < 3) { life++; }
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.CompareTag("End"))
+        {
+            SceneManager.LoadScene(0);
         }
 
     }
@@ -260,13 +279,14 @@ public class PlayerController : MonoBehaviour
 
     public void ActivateJumpBonus()
     {
-        isJumpBonusActive = true; // Bonus etkinleştirildi
-        StartCoroutine(JumpBonusDisableRoutine());
+        isJumpBonusActive = true;
+        Invoke(nameof(JumpBonusDisable), 10f);
     }
         
-    IEnumerator JumpBonusDisableRoutine(){
-        yield return new WaitForSeconds(6.0f);
+    private void JumpBonusDisable()
+    {
         isJumpBonusActive = false;
+
     }
 
 }
