@@ -36,6 +36,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public TMP_Text coinText;
     [SerializeField] private float coinIncreaseSpeed = 0.1f;
 
+    [SerializeField] private bool canDoubleJump = false; // Çift zıplama kullanılabilir mi?
+    [SerializeField] public bool isJumpBonusActive = false; // Bonus aktif mi?
+
+
 
     Rigidbody2D rb;
     Animator anim;
@@ -89,36 +93,52 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void PerformJump(float slopeAngle)
+    {
+    if (slopeAngle == 0)
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+    else
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce * 1.2f);
+
+    anim.SetBool("JumpUp", true);
+    anim.SetBool("JumpDown", false);
+    }
+
+
     private void Jump()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        isAboutToLand = !isGrounded && rb.velocity.y < 0 && Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckRadius * 5f, groundLayer);
+    isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+    isAboutToLand = !isGrounded && rb.velocity.y < 0 && Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckRadius * 5f, groundLayer);
 
-        anim.SetBool("JumpUp", !isGrounded && rb.velocity.y > 0);
-        anim.SetBool("JumpDown", isAboutToLand);
+    anim.SetBool("JumpUp", !isGrounded && rb.velocity.y > 0);
+    anim.SetBool("JumpDown", isAboutToLand);
 
-        Vector2 rayDirection = Vector2.down + (Vector2.right * rb.velocity.x * 0.1f);
-        float rayDistance = groundCheckRadius * 5f;
+    Vector2 rayDirection = Vector2.down + (Vector2.right * rb.velocity.x * 0.1f);
+    float rayDistance = groundCheckRadius * 5f;
 
-        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, rayDirection, rayDistance, groundLayer);
-        float slopeAngle = Vector2.Angle(Vector2.up, hit.normal); // Zemin e�imi
+    RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, rayDirection, rayDistance, groundLayer);
+    float slopeAngle = Vector2.Angle(Vector2.up, hit.normal); // Zemin eğimi
 
-        if (isGrounded)
+    if (isGrounded)
+    {
+        anim.SetBool("JumpDown", false);
+        canDoubleJump = true; // Yere inince çift zıplama sıfırlanır
+    }
+
+    if (Input.GetButtonDown("Jump"))
+    {
+        if (isGrounded) // İlk zıplama
         {
-            anim.SetBool("JumpDown", false);
+            PerformJump(slopeAngle);
         }
-
-        if (isGrounded && Input.GetButtonDown("Jump"))
+        else if (isJumpBonusActive && canDoubleJump) // Çift zıplama
         {
-            if (slopeAngle == 0)
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            else
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce * 1.2f);
-
-            anim.SetBool("JumpUp", true);
-            anim.SetBool("JumpDown", false);
+            PerformJump(0); // Eğimi dikkate almadan çift zıplama yapılır
+            canDoubleJump = false; // Çift zıplama hakkını tüket
         }
     }
+    }
+
 
     private void Fire()
     {
@@ -176,6 +196,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(IncrementCoins(20));
             collision.GetComponent<BoxCollider2D>().enabled = false;
         }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -235,6 +256,17 @@ public class PlayerController : MonoBehaviour
             coinsAdded++;
             yield return new WaitForSeconds(coinIncreaseSpeed);
         }
+    }
+
+    public void ActivateJumpBonus()
+    {
+        isJumpBonusActive = true; // Bonus etkinleştirildi
+        StartCoroutine(JumpBonusDisableRoutine());
+    }
+        
+    IEnumerator JumpBonusDisableRoutine(){
+        yield return new WaitForSeconds(6.0f);
+        isJumpBonusActive = false;
     }
 
 }

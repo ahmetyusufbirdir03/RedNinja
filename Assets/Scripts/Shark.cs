@@ -26,12 +26,12 @@ public class Shark : MonoBehaviour
 
     private void Start()
     {
-        // Referanslarý al
+        // Referanslari al
         player = GameObject.FindWithTag("Player");
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
-        // Pozisyonlarý ve saðlýk deðerlerini baþlat
+        // Pozisyonlari ve saï¿½lï¿½k degerlerini baslat
         originalPosition = transform.position;
         targetPosition = new Vector3(originalPosition.x + 3, originalPosition.y, originalPosition.z);
 
@@ -46,21 +46,21 @@ public class Shark : MonoBehaviour
 
         if (distanceToPlayer < 1f)
         {
-            // Oyuncuya saldýr
+            // Oyuncuya saldir
             anim.SetBool("Attack", true);
         }
-        else if (distanceToPlayer < 8f)
+        else if (distanceToPlayer < 5f)
         {
             // Oyuncuyu takip et
             FollowPlayer();
-            CheckForObstacle(); // Engel kontrolü yap
+            CheckForObstacle(); // Engel kontrolu yap
             anim.SetBool("Attack", false);
         }
         else
         {
-            // Hedefler arasýnda hareket et
+            // Hedefler arasinda hareket et
             MoveBetweenPositions();
-            CheckForObstacle(); // Engel kontrolü yap
+            CheckForObstacle(); // Engel kontrolu yap
             anim.SetBool("Attack", false);
         }
 
@@ -93,12 +93,12 @@ public class Shark : MonoBehaviour
 
     private void CheckForObstacle()
     {
-        // Engel kontrolü için bir ýþýn kullan
+        // Engel kontrolï¿½ iï¿½in bir ï¿½ï¿½ï¿½n kullan
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * (movingToTarget ? 1 : -1), 0.5f);
 
         if (hit.collider != null && !hit.collider.CompareTag("Player"))
         {
-            if (Mathf.Abs(rb.velocity.y) < 0.1f) // Zaten havadaysa zýplama
+            if (Mathf.Abs(rb.velocity.y) < 0.1f) // Zaten havadaysa zï¿½plama
             {
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             }
@@ -152,7 +152,7 @@ public class Shark : MonoBehaviour
     {
         isDead = true;
 
-        // Hareket ve saldýrý durdur
+        // Hareket ve saldï¿½rï¿½ durdur
         moveSpeed = 0;
         followSpeed = 0;
 
