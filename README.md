@@ -27,27 +27,30 @@
 
 ## Grup Üyeleri ve Katkıları  
 
-### 1. **Lütfü Bedel**  
+### 1. **Lütfü Bedel : 21360859030**  
 - Aksiyonlar:  
-  - **Aksiyom1:** 
-  - **Aksiyom2:**
-  - **Aksiyom3:** 
-  - **Aksiyom4:** 
+  - **Aksiyom1:Player Movement (A,D) -- PlayerConroller.cs/67 
+  - **Aksiyom2:Player Jump -- PlayerConroller.cs/107
+  - **Aksiyom3:Oyuncu canı azalma/artma -- PlayerConroller.cs/160
+  - **Aksiyom4:Player Fire -- PlayerConroller.cs/142
+  - **Aksiyom5: Player double jump -- PlayerConroller.cs/ 95,131
+  - **Aksiyom6: Player zemine göre yönünü ayarlama -- PlayerConroller.cs/243
 
-### 2. **Ahmet Yusuf Birdir**  
+### 2. **Ahmet Yusuf Birdir : 21360859026**  
+- Aksiyonlar:
+  - **Aksiyom1:Oyuncu shift ile hızlanma -- PlayerController.cs/69 
+  - **Aksiyom2:Shark Oyuncuyu takip edip saldırma  -- Shark.cs/89
+  - **Aksiyom3:Shark iki nokta arası hareket etme -- Shark.cs/76
+  - **Aksiyom4:Slime Fire -- Slime.cs/51
+  - **Aksiyom5:Spike / Saw Oyuncuya hasar verme - kuvvet uygulayıp itme -- PlayerController.cs/216,225
+  
+
+### 3. **Yusuf Güney : 22360859041**  
 - Aksiyonlar:  
-  - **Aksiyom1:** 
-  - **Aksiyom2:**
-  - **Aksiyom3:** 
-  - **Aksiyom4:** 
-
-
-### 3. **Yusuf Güney**  
-- Aksiyonlar:  
-  - **Aksiyom1:** 
-  - **Aksiyom2:**
-  - **Aksiyom3:** 
-  - **Aksiyom4:** 
-
+  - **Aksiyom1:Moving Platform -- Platform.cs(hepsi)
+  - **Aksiyom2:Sallana Gürz -- Mace.cs(hepsi)
+  - **Aksiyom3:Checkpoint noktalarına ışınlanma -- Sea.cs(hepsi)
+  - **Aksiyom4:Coin toplama/ coinleri ekrana yazdırma -- PlayerController.cs/184,264
+  - **Aksiyom5:Helth potion toplama/ oyuncuya can ekleme -- PlayerConroller.cs/208
 ## Lisans  
 Bu proje, MIT Lisansı ile lisanslanmıştır. Daha fazla bilgi için `LICENSE` dosyasını inceleyebilirsiniz.
